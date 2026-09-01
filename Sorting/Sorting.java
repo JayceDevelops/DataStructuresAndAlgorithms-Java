@@ -1,3 +1,5 @@
+
+
 public class Sorting {
 
     public static void main(String[] args){
@@ -5,17 +7,17 @@ public class Sorting {
         bubble(nums);
         print(nums);
 
-        //nums = {12, 2, 5, 20, 9, 10};
+        nums = getRandom(200, 6);
         selection(nums);
         print(nums);
-    }
 
-    // Prints an array
-    public static void print(int[] arr){
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
+        nums = getRandom(200, 6);
+        insertion(nums);
+        print(nums);
+
+        nums = getRandom(200, 6);
+        QuickSort(nums, 0, nums.length - 1);
+        print(nums);
     }
 
     // Bubble Sort
@@ -65,9 +67,59 @@ public class Sorting {
         }
     }
 
+    // RECURSION KNOWLEDGE NEEDED
+
+    public static void QuickSort(int[] arr, int low, int high){
+
+        if (low >= high){
+            return; // array of 1 is sorted
+        }
+
+        int pivot = arr[high];
+
+        int counter = low; // Where to put the pivot
+
+        for (int i = low; i < high; i++){
+            if (arr[i] < pivot){
+                swap(arr, i, counter);
+                counter++;
+            }
+        }
+
+        // insert pivot in correct spot
+        swap(arr, counter, high);
+
+        QuickSort(arr, low, counter - 1); // Left Side
+        QuickSort(arr, counter + 1, high); // Right side 
+    }
+
+
+
+    // SOME HELPER FUNCTIONS
+
+    // Swaps two elements in an array
     public static void swap(int[] arr, int from, int to){
         int temp = arr[from];
         arr[from] = arr[to];
         arr[to] = temp;
+    }
+
+        // Prints an array
+    public static void print(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // Returns random array of ints
+    public static int[] getRandom(int max, int length){
+        int[] randomArr = new int[length];
+
+        for (int i = 0; i < length; ++i){
+            randomArr[i] = (int) Math.round(Math.random() * max);
+        }
+
+        return randomArr;
     }
 }
