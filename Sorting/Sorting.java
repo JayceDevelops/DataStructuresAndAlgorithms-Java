@@ -18,6 +18,10 @@ public class Sorting {
         nums = getRandom(200, 6);
         QuickSort(nums, 0, nums.length - 1);
         print(nums);
+
+        nums = getRandom(200, 6);
+        MergeSort sorted = new MergeSort(nums);
+        print(nums);
     }
 
     // Bubble Sort
