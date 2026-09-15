@@ -1,9 +1,6 @@
-
-
-
 public class assignment1 {
     public static void main(String[] args) {
-        String algo = "bubble";
+        String algo = "merge";
         double[] theTimes = getTimes(algo);
         printArray(theTimes);
 
@@ -11,12 +8,12 @@ public class assignment1 {
 
     private static double[] getTimes(String algo){
 
-        double[] times = new double[10];
+        double[] times = new double[300];
 
-        for (int i = 10_000; i <= 100_000; i += 10000){
-            int[] arr = Sorting.getRandom(1000, i);
+        for (int i = 1000; i <= 300_000; i += 1000){
+            int[] arr = Sorting.getRandom(100000, i);
             double time = getTime(algo, arr);
-            times[(i / 10000) - 1] = time;
+            times[(i / 1000) - 1] = time;
         }
 
         return times;
@@ -25,12 +22,32 @@ public class assignment1 {
     // Helper function
     private static double getTime(String algo, int[] arr){
         long startTime = System.nanoTime();
-        if ("bubble".equals(algo)){
-            Sorting.bubble(arr);
+
+        switch (algo){
+
+            case "bubble" -> {
+                Sorting.bubble(arr);
+            }
+
+            case "selection" -> {
+                Sorting.selection(arr);
+            }
+
+            case "insertion" -> {
+                Sorting.insertion(arr);
+            }
+
+            case "merge" -> {
+                MergeSort sorted = new MergeSort(arr);
+            }
+
+            case "quick" -> {
+
+            }
         }
         long endTime = System.nanoTime();
 
-        return ((endTime / startTime) / 1_000_000_000.0);
+        return endTime - startTime;
     }
 
     private static void printArray(double[] arr){
