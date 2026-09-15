@@ -1,16 +1,27 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class assignment1 {
     public static void main(String[] args) {
-        String algo = "merge";
-        double[] theTimes = getTimes(algo);
-        printArray(theTimes);
+        Map<String, double[]> algos = new HashMap<>();
+        algos.put("bubble", getTimes("bubble"));
+        algos.put("selection", getTimes("selection"));
+        algos.put("insertion", getTimes("insertion"));
+        algos.put("merge", getTimes("merge"));
 
+
+        for (String key : algos.keySet()){
+            System.out.print(key + ": ");
+            printArray(algos.get(key));
+            System.out.println();
+        }
     }
 
     private static double[] getTimes(String algo){
 
-        double[] times = new double[300];
+        double[] times = new double[200];
 
-        for (int i = 1000; i <= 300_000; i += 1000){
+        for (int i = 1000; i <= 200_000; i += 1000){
             int[] arr = Sorting.getRandom(100000, i);
             double time = getTime(algo, arr);
             times[(i / 1000) - 1] = time;
@@ -45,6 +56,7 @@ public class assignment1 {
 
             }
         }
+        
         long endTime = System.nanoTime();
 
         return endTime - startTime;
