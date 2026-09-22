@@ -12,9 +12,9 @@ public class assignment1 {
         algos.put("merge", getTimes("merge"));
         algos.put("quick", getTimes("quick"));
 
-        try (FileWriter writer = new FileWriter("Sorting/data.txt", true)){
+        try (FileWriter writer = new FileWriter("./data.csv", true)){
             for (String key : algos.keySet()){
-                writer.write(key + ": ");
+                writer.write(key + ",");
                 writer.write(dataAsString(algos.get(key)));
                 writer.write('\n');
             }
@@ -26,9 +26,9 @@ public class assignment1 {
 
     private static double[] getTimes(String algo){
 
-        double[] times = new double[300];
+        double[] times = new double[500];
 
-        for (int i = 100; i <= 30_000; i += 100){
+        for (int i = 100; i <= 50_000; i += 100){
             int[] arr = Sorting.getRandom(100000, i);
             double time = getTime(algo, arr);
             times[(i / 100) - 1] = time;
@@ -69,18 +69,12 @@ public class assignment1 {
         return endTime - startTime;
     }
 
-    private static void printArray(double[] arr){
-        for (int i = 0; i < arr.length; i++){
-            System.out.print(arr[i] + "    ");
-        }
-    }
-
     private static String dataAsString(double[] arr){
         String newStr = "";
 
         for (int i = 0; i < arr.length; i++){
             if (i < arr.length - 1){
-                newStr += arr[i] + ", ";
+                newStr += arr[i] + ",";
             }
             else {
                 newStr += arr[i];

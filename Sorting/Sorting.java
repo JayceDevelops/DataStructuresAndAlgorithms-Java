@@ -1,24 +1,4 @@
-
-
 public class Sorting {
-
-    public static void main(String[] args){
-        int[] nums = {12, 2, 5, 20, 9, 10};
-        bubble(nums);
-        print(nums);
-
-        nums = getRandom(200, 6);
-        selection(nums);
-        print(nums);
-
-        nums = getRandom(200, 6);
-        insertion(nums);
-        print(nums);
-
-        nums = getRandom(200, 6);
-        MergeSort sorted = new MergeSort(nums);
-        print(nums);
-    }
 
     // Bubble Sort
     public static void bubble(int[] arr){
