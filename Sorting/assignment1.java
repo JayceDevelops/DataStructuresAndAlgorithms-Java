@@ -26,9 +26,9 @@ public class assignment1 {
 
     private static double[] getTimes(String algo){
 
-        double[] times = new double[200];
+        double[] times = new double[300];
 
-        for (int i = 100; i <= 10_000; i += 100){
+        for (int i = 100; i <= 30_000; i += 100){
             int[] arr = Sorting.getRandom(100000, i);
             double time = getTime(algo, arr);
             times[(i / 100) - 1] = time;
